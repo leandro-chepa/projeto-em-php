@@ -1,0 +1,131 @@
+﻿<html>
+<head>
+    <link rel="shortcut icon" href="imagens/Logo.jpg">
+    <title>Aloha Turismo</title>
+    <script src="https://code.jquery.com/jquery-3.2.1.js"></script>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="../rules\style.css">
+</head>
+<body>
+    <header class="header">
+        <nav class="cabecario">
+            <ul>
+                <li style="text-align: left;">
+                    <a href="home.html">Alterar para logo</a>
+                </li>
+                <li>
+                    <h2>Aloha Turismo</h2>
+                </li>
+                <li style="text-align: right;">
+                    <a>Puxar nome usuario</a>
+                </li>
+            </ul>
+        </nav>
+    </header>
+    <div>
+        <table>
+            <tr>
+                <th style="width: 82%;">
+                    <main class="main">
+                        <section class="content">
+                            <h1>Consultar Funcionario</h1>
+                            <form>
+                                <table>
+                                    <tr>
+                                        <th class="thCad">
+                                            <label for="nome" class="campo">Nome</label>
+                                            <input type="text" id="nome" name="nome" />
+                                        </th>
+                                        <th class="thCad">
+                                            <label for="cpf" class="campo"> CPF</label>
+                                            <input type="text" id="cpf" name="cpf" />
+                                        </th>
+                                        <th class="thCad">
+                                            <input name="$SendPesqVeiculo" type="submit" value="Pesquisar" class="tdc tdc-color"/>
+                                        </th>
+                                    </tr>
+                                </table>
+                            </form>
+							<table>
+                                    <tr>
+										<th>
+                                            <label>id</label>
+                                        </th>
+                                        <th>
+                                            <label>Nome</label>
+                                        </th>
+                                        <th>
+                                            <label>CPF</label>
+                                        </th>
+										<th>
+                                            <label>PIS</label>
+                                        </th>
+										<th>
+                                            <label>E-mail</label>
+                                        </th>
+										<th>
+                                            <label>CNH</label>
+                                        </th>
+										<th>
+                                            <label>Data Nascimento</label>
+                                        </th>
+                                    </tr>
+									<?php
+										$con = mysqli_connect("127.0.0.1","root","","AlohaDB");
+
+										$SendPesqFuncionario = filter_input(INPUT_POST, '$SendPesqFuncionario', FILTER_SANITIZE_STRING);
+										if($SendPesqFuncionario){
+											$modelo = filter_input(INPUT_POST, 'modelo', FILTER_SANITIZE_STRING);
+											$result_funcionario = "SELECT * FROM funcionario";
+											$result_funcionario = mysqli_query($con, $result_funcionario);
+											while($row_funcionario = mysqli_fetch_assoc($result_funcionario)){
+									?>
+									<tr>
+                                        <th>
+									<?php
+												echo . $row_funcionario['idVeiculo'] . "<br>";
+									?>
+										</th>
+                                        <th>
+									<?php
+												echo . $row_funcionario['marca'] . "<br>";
+									?>
+										</th>
+                                        <th>
+									<?php
+												echo . $row_funcionario['modelo'] . "<br>";
+									?>
+										</th>
+                                        <th>
+									<?php
+												echo . $row_funcionario['capacidade'] . "<br>";
+									?>
+										</th>
+									<?php
+											}
+										}
+									?>
+                                    </tr>
+                                </table>
+                        </section>
+                    </main>
+                </th>
+                <th>
+                    <a href="cadastroFuncionario.html" class="btn btn-color"> Cadastrar Funcionario </a>
+                    <br />
+                    <br />
+                    <br />
+                    <a href="consultarFuncionario.html" class="btn btn-color"> Consultar Funcionario </a>
+                    <br />
+                    <br />
+                    <br />
+                    <a href="cadastroUsuario.html" class="btn btn-color"> Cadastrar Usuario </a>
+                </th>
+            </tr>
+        </table>
+    </div>
+    <footer class="footer">
+        <p>Todos os direitos reservados</p>
+    </footer>
+</body>
+</html>
